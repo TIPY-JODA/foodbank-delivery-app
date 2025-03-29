@@ -1,0 +1,37 @@
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+pubspec.lock
+
+# IDEs
+android/.gradle/
+android/app/key.jks
+android/local.properties
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+ios/Pods/
+macos/Pods/
+linux/flutter/
+windows/flutter/
+web/.dart_tool/
+**/GeneratedPluginRegistrant.*
+
+# Editor config files
+*.iml
+*.swp
+*.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
