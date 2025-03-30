@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:food_ex_delivery_app/models/notification_order.dart';
-import 'package:food_ex_delivery_app/models/notification_order_history.dart';
-import 'package:food_ex_delivery_app/services/api-list.dart';
-import 'package:food_ex_delivery_app/services/server.dart';
+import 'package:tipy_shop/models/notification_order.dart';
+import 'package:tipy_shop/models/notification_order_history.dart';
+import 'package:tipy_shop/services/api-list.dart';
+import 'package:tipy_shop/services/server.dart';
 import 'package:get/get.dart';
 
 class OrderListController extends GetxController {
@@ -53,13 +53,14 @@ class OrderListController extends GetxController {
 
   getAllOrdersHistory() async {
     orderHistoryList.clear();
-    server
-        .getRequest(endPoint: APIList.notificationOrderHistory)
-        .then((response) {
+    server.getRequest(endPoint: APIList.notificationOrderHistory).then((
+      response,
+    ) {
       if (response != null && response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
-        var orderHistoryListData =
-            NotificationOrderHistory.fromJson(jsonResponse);
+        var orderHistoryListData = NotificationOrderHistory.fromJson(
+          jsonResponse,
+        );
 
         orderHistoryList = <OrderHistoryData>[];
         print(orderHistoryListData);
@@ -87,28 +88,27 @@ class OrderListController extends GetxController {
       update();
     });
 
-    var jsonMap = {
-      'status': int.parse(status),
-    };
+    var jsonMap = {'status': int.parse(status)};
     String jsonStr = jsonEncode(jsonMap);
     server
         .putRequest(
-            endPoint: APIList.notificationOrderUpdateById! + id + '/update',
-            body: jsonStr)
+          endPoint: APIList.notificationOrderUpdateById! + id + '/update',
+          body: jsonStr,
+        )
         .then((response) {
-      final jsonResponse = json.decode(response.body);
-      print(jsonResponse);
-      if (response != null && response.statusCode == 200) {
-        onInit();
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
+          final jsonResponse = json.decode(response.body);
+          print(jsonResponse);
+          if (response != null && response.statusCode == 200) {
+            onInit();
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          } else {
+            Get.rawSnackbar(message: 'Please enter valid input');
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          }
         });
-      } else {
-        Get.rawSnackbar(message: 'Please enter valid input');
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
-        });
-      }
-    });
   }
 }

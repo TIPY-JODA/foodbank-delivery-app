@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:food_ex_delivery_app/widgets/authentication.dart';
+import 'package:tipy_shop/widgets/authentication.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -40,7 +40,7 @@ class FoodEx extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         locale: langValue,
         translations: Languages(),
-        title: 'FoodBank',
+        title: 'TipyShop',
         theme: ThemeData(useMaterial3: false),
         home: Authentication(),
       ),

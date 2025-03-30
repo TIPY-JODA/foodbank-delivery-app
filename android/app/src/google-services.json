@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1021583282539",
+    "project_id": "tipyjoda",
+    "storage_bucket": "tipyjoda.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021583282539:android:27ef051693176121a33c2e",
+        "android_client_info": {
+          "package_name": "com.py.tipy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXg9TIGL1TTCWseSrqndv8MNuw5rgibuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

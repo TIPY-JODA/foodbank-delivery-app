@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:food_ex_delivery_app/controllers/auth-controller.dart';
-import 'package:food_ex_delivery_app/services/user-service.dart';
-import 'package:food_ex_delivery_app/utils/images.dart';
-import 'package:food_ex_delivery_app/utils/theme_colors.dart';
-import 'package:food_ex_delivery_app/views/signing/sign_in.dart';
+import 'package:tipy_shop/controllers/auth-controller.dart';
+import 'package:tipy_shop/services/user-service.dart';
+import 'package:tipy_shop/utils/images.dart';
+import 'package:tipy_shop/utils/theme_colors.dart';
+import 'package:tipy_shop/views/signing/sign_in.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,20 +25,15 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   void initState() {
-    FirebaseMessaging.instance
-        .getInitialMessage()
-        .then((RemoteMessage? message) {});
+    FirebaseMessaging.instance.getInitialMessage().then(
+      (RemoteMessage? message) {},
+    );
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {});
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {});
     FirebaseMessaging.instance.getToken().then((token) {
       update(token!);
     });
-    Timer(
-      Duration(seconds: 5),
-      () => ({
-        logInCheck(),
-      }),
-    );
+    Timer(Duration(seconds: 5), () => ({logInCheck()}));
     super.initState();
   }
 

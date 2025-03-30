@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_ex_delivery_app/utils/theme_colors.dart';
-import 'package:food_ex_delivery_app/views/profile/profile_screen.dart';
-import 'package:food_ex_delivery_app/views/transaction/transaction_page.dart';
-import 'package:food_ex_delivery_app/views/withdraw/withdraw_page.dart';
+import 'package:tipy_shop/utils/theme_colors.dart';
+import 'package:tipy_shop/views/profile/profile_screen.dart';
+import 'package:tipy_shop/views/transaction/transaction_page.dart';
+import 'package:tipy_shop/views/withdraw/withdraw_page.dart';
 import 'package:get/get.dart';
 import 'package:pandabar/pandabar.dart';
 
@@ -31,10 +31,7 @@ class _HomePageState extends State<MainScreen> {
           onTap: () {
             Get.to(TransactionsPage());
           },
-          child: Icon(
-            FontAwesomeIcons.creditCard,
-            color: Colors.white,
-          ),
+          child: Icon(FontAwesomeIcons.creditCard, color: Colors.white),
         ),
         fabColors: [ThemeColors.baseThemeColor, ThemeColors.baseThemeColor],
         buttonData: [

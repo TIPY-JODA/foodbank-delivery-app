@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:food_ex_delivery_app/services/goofle_map_api.dart';
-import 'package:food_ex_delivery_app/utils/font_size.dart';
-import 'package:food_ex_delivery_app/utils/theme_colors.dart';
+import 'package:tipy_shop/services/goofle_map_api.dart';
+import 'package:tipy_shop/utils/font_size.dart';
+import 'package:tipy_shop/utils/theme_colors.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -65,20 +65,25 @@ class _MapState extends State<Map> {
 
   void showLocationPins() {
     var sourceposition = LatLng(
-        currentLocation!.latitude ?? 0.0, currentLocation!.longitude ?? 0.0);
+      currentLocation!.latitude ?? 0.0,
+      currentLocation!.longitude ?? 0.0,
+    );
 
-    _marker.add(Marker(
-      markerId: MarkerId('sourcePosition'),
-      position: sourceposition,
-    ));
+    _marker.add(
+      Marker(markerId: MarkerId('sourcePosition'), position: sourceposition),
+    );
 
-    var destinationposition = LatLng(destinationLocation!.latitude ?? 0.0,
-        destinationLocation!.longitude ?? 0.0);
+    var destinationposition = LatLng(
+      destinationLocation!.latitude ?? 0.0,
+      destinationLocation!.longitude ?? 0.0,
+    );
 
-    _marker.add(Marker(
-      markerId: MarkerId('destinationPosition'),
-      position: destinationposition,
-    ));
+    _marker.add(
+      Marker(
+        markerId: MarkerId('destinationPosition'),
+        position: destinationposition,
+      ),
+    );
 
     setPolylinesInMap();
   }
@@ -86,31 +91,42 @@ class _MapState extends State<Map> {
   void setPolylinesInMap() async {
     var result = await polylinePoints!.getRouteBetweenCoordinates(
       //api key
-      GoogleMapApi().url,
-      PointLatLng(
-          currentLocation!.latitude ?? 0.0, currentLocation!.longitude ?? 0.0),
+      googleApiKey: GoogleMapApi().url,
 
-      PointLatLng(destinationLatlng.latitude, destinationLatlng.longitude),
+      request: PolylineRequest(
+        origin: PointLatLng(
+          currentLocation!.latitude ?? 0.0,
+          currentLocation!.longitude ?? 0.0,
+        ),
+        destination: PointLatLng(
+          destinationLatlng.latitude,
+          destinationLatlng.longitude,
+        ),
+        mode: TravelMode.driving,
+      ),
     );
 
     if (result.points.isNotEmpty) {
       result.points.forEach((pointLatLng) {
-        polylineCoordinates
-            .add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
+        polylineCoordinates.add(
+          LatLng(pointLatLng.latitude, pointLatLng.longitude),
+        );
       });
     }
 
     setState(() {
-      _polylines.add(Polyline(
-        polylineId: PolylineId('polyline'),
-        patterns: [PatternItem.dash(10), PatternItem.gap(10)],
-        color: Colors.red,
-        visible: true,
-        points: polylineCoordinates,
-        startCap: Cap.roundCap,
-        endCap: Cap.roundCap,
-        width: 5,
-      ));
+      _polylines.add(
+        Polyline(
+          polylineId: PolylineId('polyline'),
+          patterns: [PatternItem.dash(10), PatternItem.gap(10)],
+          color: Colors.red,
+          visible: true,
+          points: polylineCoordinates,
+          startCap: Cap.roundCap,
+          endCap: Cap.roundCap,
+          width: 5,
+        ),
+      );
     });
   }
 
@@ -120,7 +136,9 @@ class _MapState extends State<Map> {
       tilt: 80,
       bearing: 30,
       target: LatLng(
-          currentLocation!.latitude ?? 0.0, currentLocation!.longitude ?? 0.0),
+        currentLocation!.latitude ?? 0.0,
+        currentLocation!.longitude ?? 0.0,
+      ),
     );
 
     final GoogleMapController controller = await _controller.future;
@@ -129,26 +147,34 @@ class _MapState extends State<Map> {
 
     setState(() {
       var sourcePosition = LatLng(
-          currentLocation!.latitude ?? 0.0, currentLocation!.longitude ?? 0.0);
+        currentLocation!.latitude ?? 0.0,
+        currentLocation!.longitude ?? 0.0,
+      );
 
-      var destinationPosition = LatLng(destinationLocation!.latitude ?? 0.0,
-          destinationLocation!.longitude ?? 0.0);
+      var destinationPosition = LatLng(
+        destinationLocation!.latitude ?? 0.0,
+        destinationLocation!.longitude ?? 0.0,
+      );
 
       _marker.removeWhere((marker) => marker.mapsId.value == 'sourcePosition');
       print(currentLocation!.latitude);
       print(currentLocation!.latitude);
-      _marker.add(Marker(
-        markerId: MarkerId('sourcePosition'),
-        infoWindow: InfoWindow(title: 'inilabs'),
-        position: sourcePosition,
-      ));
+      _marker.add(
+        Marker(
+          markerId: MarkerId('sourcePosition'),
+          infoWindow: InfoWindow(title: 'inilabs'),
+          position: sourcePosition,
+        ),
+      );
 
       print(destinationLocation!.latitude);
-      _marker.add(Marker(
-        markerId: MarkerId('destinationPosition'),
-        infoWindow: InfoWindow(title: 'Monipur'),
-        position: destinationPosition,
-      ));
+      _marker.add(
+        Marker(
+          markerId: MarkerId('destinationPosition'),
+          infoWindow: InfoWindow(title: 'Monipur'),
+          position: destinationPosition,
+        ),
+      );
     });
   }
 
@@ -158,10 +184,13 @@ class _MapState extends State<Map> {
       zoom: 16,
       tilt: 80,
       bearing: 30,
-      target: currentLocation != null
-          ? LatLng(currentLocation!.latitude ?? 0.0,
-              currentLocation!.longitude ?? 0.0)
-          : LatLng(0.0, 0.0),
+      target:
+          currentLocation != null
+              ? LatLng(
+                currentLocation!.latitude ?? 0.0,
+                currentLocation!.longitude ?? 0.0,
+              )
+              : LatLng(0.0, 0.0),
     );
 
     return Scaffold(
@@ -169,9 +198,10 @@ class _MapState extends State<Map> {
         title: Text(
           "GET_DIRECTION".tr,
           style: TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: FontSize.xLarge,
-              color: ThemeColors.scaffold_bg_Color),
+            fontWeight: FontWeight.w900,
+            fontSize: FontSize.xLarge,
+            color: ThemeColors.scaffold_bg_Color,
+          ),
         ),
         backgroundColor: ThemeColors.baseThemeColor,
         centerTitle: true,

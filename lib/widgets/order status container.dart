@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:food_ex_delivery_app/utils/font_size.dart';
-import 'package:food_ex_delivery_app/utils/size_config.dart';
+import 'package:tipy_shop/utils/font_size.dart';
+import 'package:tipy_shop/utils/size_config.dart';
 
 class Order_status_container extends StatefulWidget {
   final String statusName;
@@ -8,14 +8,14 @@ class Order_status_container extends StatefulWidget {
   final Color bgColor;
   final Color text_color;
   final Icon icon;
-  Order_status_container(
-      {Key? key,
-      required this.statusName,
-      required this.bgColor,
-      required this.text_color,
-      required this.status_numbers,
-      required this.icon})
-      : super(key: key);
+  Order_status_container({
+    Key? key,
+    required this.statusName,
+    required this.bgColor,
+    required this.text_color,
+    required this.status_numbers,
+    required this.icon,
+  }) : super(key: key);
 
   @override
   _Order_status_containerState createState() => _Order_status_containerState();
@@ -29,13 +29,14 @@ class _Order_status_containerState extends State<Order_status_container> {
       //     color: widget.bgColor,
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: widget.bgColor,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(10),
-            bottomRight: Radius.circular(10),
-            topLeft: Radius.circular(10),
-            bottomLeft: Radius.circular(10),
-          )),
+        color: widget.bgColor,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+          topLeft: Radius.circular(10),
+          bottomLeft: Radius.circular(10),
+        ),
+      ),
 
       child: Column(
         children: [
@@ -57,7 +58,9 @@ class _Order_status_containerState extends State<Order_status_container> {
           Text(
             '${widget.statusName}',
             style: TextStyle(
-                color: widget.text_color, fontWeight: FontWeight.bold),
+              color: widget.text_color,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),

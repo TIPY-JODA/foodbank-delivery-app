@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:food_ex_delivery_app/models/profile.dart';
-import 'package:food_ex_delivery_app/services/api-list.dart';
-import 'package:food_ex_delivery_app/services/server.dart';
-import 'package:food_ex_delivery_app/services/user-service.dart';
-import 'package:food_ex_delivery_app/utils/theme_colors.dart';
+import 'package:tipy_shop/models/profile.dart';
+import 'package:tipy_shop/services/api-list.dart';
+import 'package:tipy_shop/services/server.dart';
+import 'package:tipy_shop/services/user-service.dart';
+import 'package:tipy_shop/utils/theme_colors.dart';
 import 'package:get/get.dart';
+import 'package:toasty_box/toast_enums.dart';
+import 'package:toasty_box/toast_service.dart';
 import 'global-controller.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
 
 class Profile_Controller extends GetxController {
   UserService userService = UserService();
@@ -58,8 +60,11 @@ class Profile_Controller extends GetxController {
     });
   }
 
-  updateUserProfile(
-      {BuildContext? context, required String filepath, type}) async {
+  updateUserProfile({
+    BuildContext? context,
+    required String filepath,
+    type,
+  }) async {
     print('email');
     loader = true;
     Future.delayed(Duration(milliseconds: 10), () {
@@ -74,38 +79,39 @@ class Profile_Controller extends GetxController {
 
     server
         .multipartRequest(
-            endPoint: APIList.profileUpdate,
-            body: body,
-            filepath: filepath,
-            type: type)
+          endPoint: APIList.profileUpdate,
+          body: body,
+          filepath: filepath,
+          type: type,
+        )
         .then((response) {
-      print(response);
-      if (response != null && response.statusCode == 200) {
-        emailController.clear();
-        nameController.clear();
-        addressController.clear();
-        phoneController.clear();
-        loader = false;
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
+          print(response);
+          if (response != null && response.statusCode == 200) {
+            emailController.clear();
+            nameController.clear();
+            addressController.clear();
+            phoneController.clear();
+            loader = false;
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+
+            ToastService.showSuccessToast(
+              context!,
+              length: ToastLength.short,
+              expandedHeight: 100,
+              backgroundColor: ThemeColors.baseThemeColor,
+              message: "Profile Updated Successfully",
+            );
+            Get.back();
+          } else {
+            loader = false;
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+            Get.rawSnackbar(message: 'Please enter valid input');
+          }
         });
-        Fluttertoast.showToast(
-            msg: "Profile Updated Successfully",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: ThemeColors.baseThemeColor,
-            textColor: Colors.white,
-            fontSize: 16.0);
-        Get.back();
-      } else {
-        loader = false;
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
-        });
-        Get.rawSnackbar(message: 'Please enter valid input');
-      }
-    });
   }
 
   updateUserPassword({BuildContext? context}) async {
@@ -116,9 +122,9 @@ class Profile_Controller extends GetxController {
     };
     String jsonBody = json.encode(body);
     print(jsonBody);
-    server
-        .putRequest(endPoint: APIList.changePassword, body: jsonBody)
-        .then((response) {
+    server.putRequest(endPoint: APIList.changePassword, body: jsonBody).then((
+      response,
+    ) {
       final jsonResponse = json.decode(response.body);
       if (response != null && response.statusCode == 200) {
         Get.back();
@@ -129,14 +135,17 @@ class Profile_Controller extends GetxController {
       } else if (response != null && response.statusCode == 422) {
         if (jsonResponse['message']['password_current'] != null) {
           Get.rawSnackbar(
-              message: jsonResponse['message']['password_current'].toString());
+            message: jsonResponse['message']['password_current'].toString(),
+          );
         } else if (jsonResponse['message']['password'] != null) {
           Get.rawSnackbar(
-              message: jsonResponse['message']['password'].toString());
+            message: jsonResponse['message']['password'].toString(),
+          );
         } else if (jsonResponse['message']['password_confirmation'] != null) {
           Get.rawSnackbar(
-              message:
-                  jsonResponse['message']['password_confirmation'].toString());
+            message:
+                jsonResponse['message']['password_confirmation'].toString(),
+          );
         }
       } else {
         Get.rawSnackbar(message: 'Pl ease enter valid input');

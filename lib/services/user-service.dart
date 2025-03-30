@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:food_ex_delivery_app/services/server.dart';
+import 'package:tipy_shop/services/server.dart';
 
 class UserService {
   SharedPreferences? prefs;
@@ -28,7 +28,7 @@ class UserService {
   Future<bool?> getBool() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    bool? b= prefs.getBool('is-user');
+    bool? b = prefs.getBool('is-user');
     return b;
   }
 
@@ -41,7 +41,7 @@ class UserService {
     }
   }
 
-  getToken() async{
+  getToken() async {
     prefs = await SharedPreferences.getInstance();
     if (prefs!.getString('token') != null) {
       String? token = prefs!.getString('token');
@@ -51,8 +51,6 @@ class UserService {
     }
   }
 
-
-
   removeSharedPreferenceData() async {
     prefs = await SharedPreferences.getInstance();
     prefs!.remove('is-user');
@@ -61,7 +59,4 @@ class UserService {
     prefs!.remove('deviceToken');
     prefs!.clear();
   }
-
-
-
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_ex_delivery_app/utils/images.dart';
-import 'package:food_ex_delivery_app/utils/size_config.dart';
-import 'package:food_ex_delivery_app/utils/theme_colors.dart';
+import 'package:tipy_shop/utils/images.dart';
+import 'package:tipy_shop/utils/size_config.dart';
+import 'package:tipy_shop/utils/theme_colors.dart';
 
 class Loader extends StatelessWidget {
   @override
@@ -12,19 +12,26 @@ class Loader extends StatelessWidget {
         Container(
           height: block * 20,
           width: block * 20,
-          decoration:
-              BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
           child: Center(
             child: Container(
               height: block * 15,
               width: block * 15,
               decoration: BoxDecoration(
-                  color: ThemeColors.baseThemeColor, shape: BoxShape.circle),
+                color: ThemeColors.baseThemeColor,
+                shape: BoxShape.circle,
+              ),
               child: Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
-                  child: Image.asset(Images.appLogo,
-                      height: block * 20, width: block * 20),
+                  child: Image.asset(
+                    Images.appLogo,
+                    height: block * 20,
+                    width: block * 20,
+                  ),
                 ),
               ),
             ),
@@ -36,7 +43,9 @@ class Loader extends StatelessWidget {
           right: 2,
           bottom: 2,
           child: CircularProgressIndicator(
-              strokeWidth: 1.5, backgroundColor: ThemeColors.baseThemeColor),
+            strokeWidth: 1.5,
+            backgroundColor: ThemeColors.baseThemeColor,
+          ),
         ),
       ],
     );

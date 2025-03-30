@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:food_ex_delivery_app/models/settings_model.dart';
-import 'package:food_ex_delivery_app/services/api-list.dart';
+import 'package:tipy_shop/models/settings_model.dart';
+import 'package:tipy_shop/services/api-list.dart';
 import 'package:get/get.dart';
-import 'package:food_ex_delivery_app/services/server.dart';
-import 'package:food_ex_delivery_app/services/user-service.dart';
+import 'package:tipy_shop/services/server.dart';
+import 'package:tipy_shop/services/user-service.dart';
 
 class SettingsController extends GetxController {
   Server server = Server();

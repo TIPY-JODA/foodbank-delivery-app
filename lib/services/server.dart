@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:food_ex_delivery_app/services/user-service.dart';
+import 'package:tipy_shop/services/user-service.dart';
 import 'package:http/http.dart' as http;
-import 'package:food_ex_delivery_app/services/api-list.dart';
+import 'package:tipy_shop/services/api-list.dart';
 
 class Server {
   /*static final Server _instance = Server._internal();
@@ -23,8 +23,10 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      return await http.get(Uri.parse(APIList.server! + endPoint!),
-          headers: _getHttpHeaders());
+      return await http.get(
+        Uri.parse(APIList.server! + endPoint!),
+        headers: _getHttpHeaders(),
+      );
     } catch (error) {
       print('GET::::::::::::::::ERROR');
       print(APIList.server! + endPoint!);
@@ -38,8 +40,10 @@ class Server {
   getRequestSettings(endPoint) async {
     HttpClient client = HttpClient();
     try {
-      return await http.get(Uri.parse(APIList.server! + endPoint!),
-          headers: getAuthHeaders());
+      return await http.get(
+        Uri.parse(APIList.server! + endPoint!),
+        headers: getAuthHeaders(),
+      );
     } catch (error) {
       print('GET::::::::::::::::ERROR');
       print(APIList.server! + endPoint!);
@@ -59,16 +63,24 @@ class Server {
     try {
       var request;
       if (type) {
-        request = http.MultipartRequest(
-            'POST', Uri.parse(APIList.server! + endPoint!))
-          ..fields.addAll(body)
-          ..headers.addAll(headers)
-          ..files.add(await http.MultipartFile.fromPath('image', filepath!));
+        request =
+            http.MultipartRequest(
+                'POST',
+                Uri.parse(APIList.server! + endPoint!),
+              )
+              ..fields.addAll(body)
+              ..headers.addAll(headers)
+              ..files.add(
+                await http.MultipartFile.fromPath('image', filepath!),
+              );
       } else {
-        request = http.MultipartRequest(
-            'POST', Uri.parse(APIList.server! + endPoint!))
-          ..fields.addAll(body)
-          ..headers.addAll(headers);
+        request =
+            http.MultipartRequest(
+                'POST',
+                Uri.parse(APIList.server! + endPoint!),
+              )
+              ..fields.addAll(body)
+              ..headers.addAll(headers);
       }
       return await request.send();
     } catch (error) {
@@ -84,8 +96,9 @@ class Server {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
       return await http.get(
-          Uri.parse(APIList.server! + "notification-order/$orderId/show"),
-          headers: _getHttpHeaders());
+        Uri.parse(APIList.server! + "notification-order/$orderId/show"),
+        headers: _getHttpHeaders(),
+      );
     } catch (error) {
       print('GET::::::::::::::::ERROR');
       print(APIList.server! + "notification-order/$orderId/show");
@@ -102,8 +115,9 @@ class Server {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
       return await http.get(
-          Uri.parse(APIList.server! + "cuisine/$cuisineId/show"),
-          headers: _getHttpHeaders());
+        Uri.parse(APIList.server! + "cuisine/$cuisineId/show"),
+        headers: _getHttpHeaders(),
+      );
     } catch (error) {
       print('GET::::::::::::::::ERROR');
       print(APIList.server! + "cuisine/$cuisineId/show");
@@ -121,8 +135,11 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      return await http.post(Uri.parse(APIList.server! + endPoint),
-          headers: getAuthHeaders(), body: body);
+      return await http.post(
+        Uri.parse(APIList.server! + endPoint),
+        headers: getAuthHeaders(),
+        body: body,
+      );
     } catch (error) {
       print('POST::::::::::::::::ERROR');
       print(APIList.server! + endPoint);
@@ -139,8 +156,11 @@ class Server {
     HttpClient client = HttpClient();
     try {
       // client.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
-      return await http.post(Uri.parse(APIList.server! + endPoint),
-          headers: _getHttpHeaders(), body: body);
+      return await http.post(
+        Uri.parse(APIList.server! + endPoint),
+        headers: _getHttpHeaders(),
+        body: body,
+      );
     } catch (error) {
       print('POST::::::::::::::::ERROR');
       print(APIList.server! + endPoint);
@@ -158,8 +178,11 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      return await http.put(Uri.parse(APIList.server! + endPoint),
-          headers: _getHttpHeaders(), body: body);
+      return await http.put(
+        Uri.parse(APIList.server! + endPoint),
+        headers: _getHttpHeaders(),
+        body: body,
+      );
     } catch (error) {
       print('POST::::::::::::::::ERROR');
       print(APIList.server! + endPoint);
@@ -177,8 +200,11 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      return await http.put(Uri.parse(APIList.server! + endPoint),
-          headers: _getHttpHeaders(), body: body);
+      return await http.put(
+        Uri.parse(APIList.server! + endPoint),
+        headers: _getHttpHeaders(),
+        body: body,
+      );
     } catch (error) {
       print('POST::::::::::::::::ERROR');
       print(APIList.server! + endPoint);
@@ -194,8 +220,10 @@ class Server {
     try {
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
-      return await http.delete(Uri.parse(APIList.server! + endPoint!),
-          headers: _getHttpHeaders());
+      return await http.delete(
+        Uri.parse(APIList.server! + endPoint!),
+        headers: _getHttpHeaders(),
+      );
     } catch (error) {
       print('GET::::::::::::::::ERROR');
       print(APIList.server! + endPoint!);
@@ -220,7 +248,7 @@ class Server {
     return headers;
   }
 
-/*static Future getGrinzContacts(String url, String body) async {
+  /*static Future getGrinzContacts(String url, String body) async {
     try {
       print('AUTH ' + url);
       return await http.post(
@@ -244,7 +272,7 @@ class Server {
         Uri.parse(APIList.server! + endPoint!),
         headers: <String, String>{
           'Content-Type': 'application/json',
-          'Authorization': token!
+          'Authorization': token!,
         },
       );
     } catch (error) {

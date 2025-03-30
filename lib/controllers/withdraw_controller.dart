@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:food_ex_delivery_app/models/withdraw_model.dart';
-import 'package:food_ex_delivery_app/services/api-list.dart';
-import 'package:food_ex_delivery_app/services/server.dart';
+import 'package:tipy_shop/models/withdraw_model.dart';
+import 'package:tipy_shop/services/api-list.dart';
+import 'package:tipy_shop/services/server.dart';
 import 'package:get/get.dart';
 
 import '../models/request_withdraw_model.dart';
@@ -96,53 +96,60 @@ class WithdrawController extends GetxController {
     print(jsonStr);
     server
         .postRequestWithToken(
-            endPoint: APIList.requestWithdrawPost!, body: jsonStr)
+          endPoint: APIList.requestWithdrawPost!,
+          body: jsonStr,
+        )
         .then((response) {
-      final jsonResponse = json.decode(response.body);
-      print(jsonResponse['message']);
+          final jsonResponse = json.decode(response.body);
+          print(jsonResponse['message']);
 
-      if (response != null && response.statusCode == 200) {
-        Get.rawSnackbar(
-            backgroundColor: Colors.green,
-            snackPosition: SnackPosition.TOP,
-            message: jsonResponse['message']);
-        Get.off(MainScreen());
-        getWithdraw();
-        getRequestWithdraw();
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
-        });
-      } else if (response != null && response.statusCode == 422) {
-        if (jsonResponse['message'].containsKey('amount')) {
-          Get.rawSnackbar(
-              backgroundColor: Colors.black,
+          if (response != null && response.statusCode == 200) {
+            Get.rawSnackbar(
+              backgroundColor: Colors.green,
               snackPosition: SnackPosition.TOP,
-              message: jsonResponse['message']['amount'][0]);
-        } else if (jsonResponse['message'].containsKey('date')) {
-          Get.rawSnackbar(
-              backgroundColor: Colors.black,
-              snackPosition: SnackPosition.TOP,
-              message: jsonResponse['message']['date'][0]);
-        } else {
-          Get.rawSnackbar(
+              message: jsonResponse['message'],
+            );
+            Get.off(MainScreen());
+            getWithdraw();
+            getRequestWithdraw();
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          } else if (response != null && response.statusCode == 422) {
+            if (jsonResponse['message'].containsKey('amount')) {
+              Get.rawSnackbar(
+                backgroundColor: Colors.black,
+                snackPosition: SnackPosition.TOP,
+                message: jsonResponse['message']['amount'][0],
+              );
+            } else if (jsonResponse['message'].containsKey('date')) {
+              Get.rawSnackbar(
+                backgroundColor: Colors.black,
+                snackPosition: SnackPosition.TOP,
+                message: jsonResponse['message']['date'][0],
+              );
+            } else {
+              Get.rawSnackbar(
+                backgroundColor: Colors.red,
+                snackPosition: SnackPosition.TOP,
+                message: 'Please enter valid input',
+              );
+            }
+
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          } else {
+            Get.rawSnackbar(
               backgroundColor: Colors.red,
               snackPosition: SnackPosition.TOP,
-              message: 'Please enter valid input');
-        }
-
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
+              message: 'Please enter valid input',
+            );
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          }
         });
-      } else {
-        Get.rawSnackbar(
-            backgroundColor: Colors.red,
-            snackPosition: SnackPosition.TOP,
-            message: 'Please enter valid input');
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
-        });
-      }
-    });
   }
 
   updateRequest(id, amount, dateWithdraw) async {
@@ -159,53 +166,59 @@ class WithdrawController extends GetxController {
     print(jsonStr);
     server
         .putRequest(
-            endPoint: APIList.requestWithdraw! + '/' + id.toString(),
-            body: jsonStr)
+          endPoint: APIList.requestWithdraw! + '/' + id.toString(),
+          body: jsonStr,
+        )
         .then((response) {
-      final jsonResponse = json.decode(response.body);
-      print(jsonResponse['message']);
+          final jsonResponse = json.decode(response.body);
+          print(jsonResponse['message']);
 
-      if (response != null && response.statusCode == 200) {
-        Get.rawSnackbar(
-            backgroundColor: Colors.green,
-            snackPosition: SnackPosition.TOP,
-            message: jsonResponse['message']);
-        Get.off(MainScreen());
-        getWithdraw();
-        getRequestWithdraw();
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
-        });
-      } else if (response != null && response.statusCode == 422) {
-        if (jsonResponse['message'].containsKey('amount')) {
-          Get.rawSnackbar(
-              backgroundColor: Colors.black,
+          if (response != null && response.statusCode == 200) {
+            Get.rawSnackbar(
+              backgroundColor: Colors.green,
               snackPosition: SnackPosition.TOP,
-              message: jsonResponse['message']['amount'][0]);
-        } else if (jsonResponse['message'].containsKey('date')) {
-          Get.rawSnackbar(
-              backgroundColor: Colors.black,
-              snackPosition: SnackPosition.TOP,
-              message: jsonResponse['message']['date'][0]);
-        } else {
-          Get.rawSnackbar(
+              message: jsonResponse['message'],
+            );
+            Get.off(MainScreen());
+            getWithdraw();
+            getRequestWithdraw();
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          } else if (response != null && response.statusCode == 422) {
+            if (jsonResponse['message'].containsKey('amount')) {
+              Get.rawSnackbar(
+                backgroundColor: Colors.black,
+                snackPosition: SnackPosition.TOP,
+                message: jsonResponse['message']['amount'][0],
+              );
+            } else if (jsonResponse['message'].containsKey('date')) {
+              Get.rawSnackbar(
+                backgroundColor: Colors.black,
+                snackPosition: SnackPosition.TOP,
+                message: jsonResponse['message']['date'][0],
+              );
+            } else {
+              Get.rawSnackbar(
+                backgroundColor: Colors.red,
+                snackPosition: SnackPosition.TOP,
+                message: 'Please enter valid input',
+              );
+            }
+
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          } else {
+            Get.rawSnackbar(
               backgroundColor: Colors.red,
               snackPosition: SnackPosition.TOP,
-              message: 'Please enter valid input');
-        }
-
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
+              message: 'Please enter valid input',
+            );
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          }
         });
-      } else {
-        Get.rawSnackbar(
-            backgroundColor: Colors.red,
-            snackPosition: SnackPosition.TOP,
-            message: 'Please enter valid input');
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
-        });
-      }
-    });
   }
 }

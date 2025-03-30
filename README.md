@@ -4,7 +4,7 @@ FoodBank Delivery App es una aplicación móvil desarrollada en **Flutter** para
 
 ## 📌 Tecnologías y Herramientas
 
-- **Flutter** (v3.24.5 - gestionado con `fvm`)
+- **Flutter** (3.29.0 - gestionado con `fvm`)
 - **Dart**
 - **BLoC** (para la gestión del estado)
 - **SQLite** (almacenamiento local)

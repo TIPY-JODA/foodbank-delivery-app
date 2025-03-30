@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:food_ex_delivery_app/models/order_details.dart';
-import 'package:food_ex_delivery_app/services/api-list.dart';
-import 'package:food_ex_delivery_app/services/server.dart';
+import 'package:tipy_shop/models/order_details.dart';
+import 'package:tipy_shop/services/api-list.dart';
+import 'package:tipy_shop/services/server.dart';
 import 'package:get/get.dart';
 
 import 'notification_order_controller.dart';
@@ -67,31 +67,30 @@ class OrderDetailsController extends GetxController {
       update();
     });
 
-    var jsonMap = {
-      'product_receive_status': int.parse(status),
-    };
+    var jsonMap = {'product_receive_status': int.parse(status)};
     String jsonStr = jsonEncode(jsonMap);
     server
         .putRequest(
-            endPoint:
-                APIList.notificationOrderUpdate! + id.toString() + '/update',
-            body: jsonStr)
+          endPoint:
+              APIList.notificationOrderUpdate! + id.toString() + '/update',
+          body: jsonStr,
+        )
         .then((response) {
-      final jsonResponse = json.decode(response.body);
-      print(jsonResponse);
-      if (response != null && response.statusCode == 200) {
-        onInit();
-        Get.find<OrderListController>().onInit;
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
+          final jsonResponse = json.decode(response.body);
+          print(jsonResponse);
+          if (response != null && response.statusCode == 200) {
+            onInit();
+            Get.find<OrderListController>().onInit;
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          } else {
+            Get.rawSnackbar(message: 'Please enter valid input');
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          }
         });
-      } else {
-        Get.rawSnackbar(message: 'Please enter valid input');
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
-        });
-      }
-    });
   }
 
   orderStatus(status, id) async {
@@ -100,28 +99,27 @@ class OrderDetailsController extends GetxController {
       update();
     });
 
-    var jsonMap = {
-      'status': int.parse(status),
-    };
+    var jsonMap = {'status': int.parse(status)};
     String jsonStr = jsonEncode(jsonMap);
     server
         .putRequest(
-            endPoint:
-                APIList.notificationOrderStatus! + id.toString() + '/update',
-            body: jsonStr)
+          endPoint:
+              APIList.notificationOrderStatus! + id.toString() + '/update',
+          body: jsonStr,
+        )
         .then((response) {
-      if (response != null && response.statusCode == 200) {
-        onInit();
-        Get.find<OrderListController>().onInit;
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
+          if (response != null && response.statusCode == 200) {
+            onInit();
+            Get.find<OrderListController>().onInit;
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          } else {
+            Get.rawSnackbar(message: 'Please enter valid input');
+            Future.delayed(Duration(milliseconds: 10), () {
+              update();
+            });
+          }
         });
-      } else {
-        Get.rawSnackbar(message: 'Please enter valid input');
-        Future.delayed(Duration(milliseconds: 10), () {
-          update();
-        });
-      }
-    });
   }
 }

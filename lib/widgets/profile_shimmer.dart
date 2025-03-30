@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_ex_delivery_app/controllers/profile_controller.dart';
-import 'package:food_ex_delivery_app/utils/images.dart';
-import 'package:food_ex_delivery_app/utils/theme_colors.dart';
+import 'package:tipy_shop/controllers/profile_controller.dart';
+import 'package:tipy_shop/utils/images.dart';
+import 'package:tipy_shop/utils/theme_colors.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
@@ -50,9 +50,7 @@ class _ProfileShimmerState extends State<ProfileShimmer> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
-                  child: CustomPaint(
-                    painter: HeaderCurvedContainer(),
-                  ),
+                  child: CustomPaint(painter: HeaderCurvedContainer()),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,9 +76,7 @@ class _ProfileShimmerState extends State<ProfileShimmer> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
+                    SizedBox(height: 25),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -120,20 +116,16 @@ class _ProfileShimmerState extends State<ProfileShimmer> {
                                                 color: Colors.grey.shade700,
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 3,
-                                            ),
+                                            SizedBox(width: 3),
                                             Icon(
                                               Icons.arrow_circle_up,
                                               color: ThemeColors.baseThemeColor,
                                               size: 20,
-                                            )
+                                            ),
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
+                                      SizedBox(height: 5),
                                       Text(
                                         '155',
                                         style: TextStyle(
@@ -148,9 +140,7 @@ class _ProfileShimmerState extends State<ProfileShimmer> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 30,
-                        ),
+                        SizedBox(width: 30),
                         Shimmer.fromColors(
                           highlightColor: Colors.grey[400]!,
                           baseColor: Colors.grey[300]!,
@@ -165,46 +155,44 @@ class _ProfileShimmerState extends State<ProfileShimmer> {
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 child: Center(
-                                    child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'ACTIVE_ORDERS'.tr,
-                                          style: TextStyle(
-                                            letterSpacing: .5,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.grey.shade700,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'ACTIVE_ORDERS'.tr,
+                                            style: TextStyle(
+                                              letterSpacing: .5,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey.shade700,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Icon(
-                                          Icons.arrow_circle_up,
-                                          color: ThemeColors.baseThemeColor,
-                                          size: 20,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      '155',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: ThemeColors.baseThemeColor,
+                                          SizedBox(width: 5),
+                                          Icon(
+                                            Icons.arrow_circle_up,
+                                            color: ThemeColors.baseThemeColor,
+                                            size: 20,
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                )),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '155',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: ThemeColors.baseThemeColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -224,8 +212,9 @@ class _ProfileShimmerState extends State<ProfileShimmer> {
                             image: AssetImage(Images.profileBackground),
                             fit: BoxFit.cover,
                             colorFilter: new ColorFilter.mode(
-                                Colors.black.withOpacity(0.2),
-                                BlendMode.dstATop),
+                              Colors.black.withOpacity(0.2),
+                              BlendMode.dstATop,
+                            ),
                           ),
                         ),
                         child: Padding(
@@ -341,11 +330,12 @@ class HeaderCurvedContainer extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()..color = ThemeColors.baseThemeColor;
-    Path path = Path()
-      ..relativeLineTo(0, 115)
-      ..quadraticBezierTo(size.width / 2, 250, size.width, 120)
-      ..relativeLineTo(0, -150)
-      ..close();
+    Path path =
+        Path()
+          ..relativeLineTo(0, 115)
+          ..quadraticBezierTo(size.width / 2, 250, size.width, 120)
+          ..relativeLineTo(0, -150)
+          ..close();
     canvas.drawPath(path, paint);
   }
 

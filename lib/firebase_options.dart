@@ -50,19 +50,18 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDabqHsfe0B3ObWyAuy4gPmi8hvnb-JZHA',
-    appId: '1:874879259832:android:2c6d1f98ccff62b533904d',
-    messagingSenderId: '874879259832',
-    projectId: 'new-project-3e70e',
-    storageBucket: 'new-project-3e70e.appspot.com',
+    apiKey: 'AIzaSyAXg9TIGL1TTCWseSrqndv8MNuw5rgibuY',
+    appId: '1:1021583282539:android:27ef051693176121a33c2e',
+    messagingSenderId: '1021583282539',
+    projectId: 'tipyjoda',
+    storageBucket: 'tipyjoda.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBcU7e-VCG27jR1wChzvXzyhLMCJZXh80M',
-    appId: '1:874879259832:ios:427c6d76479d3c5d33904d',
-    messagingSenderId: '874879259832',
-    projectId: 'new-project-3e70e',
-    storageBucket: 'new-project-3e70e.appspot.com',
-    iosBundleId: 'com.example.foodExDeliveryApp',
+    apiKey: 'AIzaSyAXg9TIGL1TTCWseSrqndv8MNuw5rgibuY',
+    appId: '1:1021583282539:android:27ef051693176121a33c2e',
+    messagingSenderId: '1021583282539',
+    projectId: 'tipyjoda',
+    storageBucket: 'tipyjoda.firebasestorage.app',
   );
 }

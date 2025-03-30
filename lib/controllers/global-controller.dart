@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:food_ex_delivery_app/models/settings_model.dart';
-import 'package:food_ex_delivery_app/services/api-list.dart';
-import 'package:food_ex_delivery_app/services/server.dart';
-import 'package:food_ex_delivery_app/services/user-service.dart';
-import 'package:food_ex_delivery_app/views/signing/sign_in.dart';
+import 'package:tipy_shop/models/settings_model.dart';
+import 'package:tipy_shop/services/api-list.dart';
+import 'package:tipy_shop/services/server.dart';
+import 'package:tipy_shop/services/user-service.dart';
+import 'package:tipy_shop/views/signing/sign_in.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -66,14 +66,11 @@ class GlobalController extends GetxController {
   updateFcmUnSubscribe() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     var deviceToken = storage.getString('deviceToken');
-    Map body = {
-      "device_token": deviceToken,
-      "topic": null,
-    };
+    Map body = {"device_token": deviceToken, "topic": null};
     String jsonBody = json.encode(body);
-    server
-        .postRequest(endPoint: APIList.fcmUnSubscribe, body: jsonBody)
-        .then((response) {
+    server.postRequest(endPoint: APIList.fcmUnSubscribe, body: jsonBody).then((
+      response,
+    ) {
       if (response != null && response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
         print('responseBody===========>');

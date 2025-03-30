@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:food_ex_delivery_app/services/api-list.dart';
-import 'package:food_ex_delivery_app/services/server.dart';
+import 'package:tipy_shop/services/api-list.dart';
+import 'package:tipy_shop/services/server.dart';
 import 'package:get/get.dart';
 
 import '../models/transactions_model.dart';
