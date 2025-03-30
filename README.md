@@ -32,6 +32,13 @@ foodbank-delivery-app/
 │-- analysis_options.yaml    # Configuración de linting
 ```
 
+El proyecto esta dividido en dos ambientes, develop y production, ambos representados por:
+- main_develop.dart
+- main_production.dart
+
+Cada uno de ellos ya tiene seteado dentro de el la baseUrl a donde debe de apuntar.
+
+
 ## 🚀 Instalación y Configuración
 
 ### Requisitos previos
