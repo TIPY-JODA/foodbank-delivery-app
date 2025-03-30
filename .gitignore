@@ -35,3 +35,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# FVM Version Cache
+.fvm/
