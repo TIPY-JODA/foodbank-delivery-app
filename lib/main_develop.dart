@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tipy_shop/services/flavor_config.dart';
 import 'package:tipy_shop/widgets/authentication.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -16,6 +17,7 @@ dynamic langValue = const Locale('en', null);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  FlavorConfig(flavor: Flavor.dev, apiUrl: "https://demo.sitepy.com/api/v1/");
   await Firebase.initializeApp();
   Get.put(SettingsController()).onInit();
   await GetStorage.init();

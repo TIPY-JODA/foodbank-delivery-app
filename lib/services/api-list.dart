@@ -1,5 +1,7 @@
+import 'package:tipy_shop/services/flavor_config.dart';
+
 class APIList {
-  static String? server = "https://demo.sitepy.com/api/v1/";
+  static String? server = FlavorConfig.instance.apiUrl;
   static String? device = "device";
   static String? login = "login";
   static String? register = "reg";

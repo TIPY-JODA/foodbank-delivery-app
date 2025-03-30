@@ -23,7 +23,6 @@ web/.dart_tool/
 *.iml
 *.swp
 *.idea/
-.vscode/
 *.sublime-project
 *.sublime-workspace
 
