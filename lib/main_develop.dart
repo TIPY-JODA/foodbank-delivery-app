@@ -17,10 +17,7 @@ dynamic langValue = const Locale('en', null);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FlavorConfig(
-    flavor: Flavor.dev,
-    apiUrl: "https://demo.food-bank.xyz/api/v1/",
-  );
+  FlavorConfig(flavor: Flavor.dev, apiUrl: "https://demo.sitepy.com/api/v1/");
   await Firebase.initializeApp();
   Get.put(SettingsController()).onInit();
   await GetStorage.init();
