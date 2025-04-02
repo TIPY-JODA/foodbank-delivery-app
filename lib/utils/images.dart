@@ -16,4 +16,5 @@ class Images {
   static String get de => 'assets/images/de.png';
   static String get ar => 'assets/images/ar.png';
   static String get fr => 'assets/images/fr.png';
+  static String get es => 'assets/images/spanish.png';
 }

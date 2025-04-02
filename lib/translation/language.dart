@@ -4,14 +4,16 @@ import 'bangla.dart';
 import 'english.dart';
 import 'french.dart';
 import 'german.dart';
+import 'spanish.dart';
 
 class Languages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
-        'en': english,
-        'bn': bangla,
-        'de': german,
-        'fr': french,
-        'ar': arabic,
-      };
+    'en': english,
+    'bn': bangla,
+    'de': german,
+    'fr': french,
+    'ar': arabic,
+    'es': spanish,
+  };
 }

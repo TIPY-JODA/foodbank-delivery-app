@@ -18,7 +18,12 @@ class LanguageController extends GetxController {
   changeLanguage(String languageCode, String languageName) {
     box.write('languageCode', languageCode);
     box.write('selectedLanguageValue', languageName);
-    Get.updateLocale(Locale(languageCode, null));
+
+    if (languageCode == 'es') {
+      Get.updateLocale(Locale(languageCode, 'ES'));
+    } else {
+      Get.updateLocale(Locale(languageCode, null));
+    }
     update();
   }
 }

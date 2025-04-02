@@ -43,17 +43,17 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
                 children: [
                   InkWell(
                     onTap: () {
-                      languageController.changeLanguage('ar', 'Arabic');
+                      languageController.changeLanguage('es', 'Spanish');
                     },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color:
-                            box.read('languageCode') == 'ar'
+                            box.read('languageCode') == 'es'
                                 ? ThemeColors.baseThemeColor.withOpacity(0.08)
                                 : Colors.white,
                         border:
-                            box.read('languageCode') == 'ar'
+                            box.read('languageCode') == 'es'
                                 ? Border.all(color: ThemeColors.baseThemeColor)
                                 : Border.all(color: Colors.white),
                       ),
@@ -69,75 +69,18 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
                                 Radius.circular(8),
                               ),
                               child: Image.asset(
-                                Images.ar,
+                                Images.es,
                                 fit: BoxFit.contain,
                               ),
                             ),
                           ),
                           SizedBox(width: 16),
                           Text(
-                            'Arabic',
+                            'Spanish',
                             style: TextStyle(fontSize: 18, height: 0.8),
                           ),
                           const Spacer(),
-                          box.read('languageCode') == 'ar'
-                              ? Padding(
-                                padding: EdgeInsets.only(right: 18, left: 16),
-                                child: SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: Icon(
-                                    FontAwesomeIcons.check,
-                                    color: ThemeColors.baseThemeColor,
-                                  ),
-                                ),
-                              )
-                              : const SizedBox(),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  InkWell(
-                    onTap: () {
-                      languageController.changeLanguage('bn', 'Bangla');
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color:
-                            box.read('languageCode') == 'bn'
-                                ? ThemeColors.baseThemeColor.withOpacity(0.08)
-                                : Colors.white,
-                        border:
-                            box.read('languageCode') == 'bn'
-                                ? Border.all(color: ThemeColors.baseThemeColor)
-                                : Border.all(color: Colors.white),
-                      ),
-                      height: 56,
-                      child: Row(
-                        children: [
-                          SizedBox(width: 16),
-                          SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                              child: Image.asset(
-                                Images.bd,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Text(
-                            'Bangla',
-                            style: TextStyle(fontSize: 18, height: 0.8),
-                          ),
-                          const Spacer(),
-                          box.read('languageCode') == 'bn'
+                          box.read('languageCode') == 'es'
                               ? Padding(
                                 padding: EdgeInsets.only(right: 18, left: 16),
                                 child: SizedBox(
@@ -195,120 +138,6 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
                           ),
                           const Spacer(),
                           box.read('languageCode') == 'en'
-                              ? Padding(
-                                padding: EdgeInsets.only(right: 18, left: 16),
-                                child: SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: Icon(
-                                    FontAwesomeIcons.check,
-                                    color: ThemeColors.baseThemeColor,
-                                  ),
-                                ),
-                              )
-                              : const SizedBox(),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  InkWell(
-                    onTap: () {
-                      languageController.changeLanguage('de', 'German');
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color:
-                            box.read('languageCode') == 'de'
-                                ? ThemeColors.baseThemeColor.withOpacity(0.08)
-                                : Colors.white,
-                        border:
-                            box.read('languageCode') == 'de'
-                                ? Border.all(color: ThemeColors.baseThemeColor)
-                                : Border.all(color: Colors.white),
-                      ),
-                      height: 56,
-                      child: Row(
-                        children: [
-                          SizedBox(width: 16),
-                          SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                              child: Image.asset(
-                                Images.de,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Text(
-                            'German',
-                            style: TextStyle(fontSize: 18, height: 0.8),
-                          ),
-                          const Spacer(),
-                          box.read('languageCode') == 'de'
-                              ? Padding(
-                                padding: EdgeInsets.only(right: 18, left: 16),
-                                child: SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: Icon(
-                                    FontAwesomeIcons.check,
-                                    color: ThemeColors.baseThemeColor,
-                                  ),
-                                ),
-                              )
-                              : const SizedBox(),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  InkWell(
-                    onTap: () {
-                      languageController.changeLanguage('fr', 'French');
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color:
-                            box.read('languageCode') == 'fr'
-                                ? ThemeColors.baseThemeColor.withOpacity(0.08)
-                                : Colors.white,
-                        border:
-                            box.read('languageCode') == 'fr'
-                                ? Border.all(color: ThemeColors.baseThemeColor)
-                                : Border.all(color: Colors.white),
-                      ),
-                      height: 56,
-                      child: Row(
-                        children: [
-                          SizedBox(width: 16),
-                          SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                              child: Image.asset(
-                                Images.fr,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Text(
-                            'French',
-                            style: TextStyle(fontSize: 18, height: 0.8),
-                          ),
-                          const Spacer(),
-                          box.read('languageCode') == 'fr'
                               ? Padding(
                                 padding: EdgeInsets.only(right: 18, left: 16),
                                 child: SizedBox(

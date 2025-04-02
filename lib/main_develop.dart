@@ -22,9 +22,9 @@ void main() async {
   Get.put(SettingsController()).onInit();
   await GetStorage.init();
   if (box.read('languageCode') != null) {
-    langValue = Locale(box.read('languageCode'), null);
+    langValue = Locale(box.read('languageCode'), 'ES');
   } else {
-    langValue = const Locale('en', null);
+    langValue = const Locale('es', 'ES');
   }
   runApp(FoodEx());
 }
@@ -45,6 +45,7 @@ class FoodEx extends StatelessWidget {
         title: 'TipyShop',
         theme: ThemeData(useMaterial3: false),
         home: Authentication(),
+        textDirection: TextDirection.ltr,
       ),
     );
   }
